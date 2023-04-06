@@ -13,6 +13,8 @@ import { CreateUserDto } from './create-user.dto';
 import { User } from './user.entity';
 import { UsersService } from './users.service';
 import { UpdateUserDto } from './dtos/update-user.dto';
+import { Serialize } from '../interceptors/serialize.interceptor';
+import { UserDto } from './dtos/user.dto';
 
 @Controller('auth')
 export class UsersController {
@@ -23,11 +25,12 @@ export class UsersController {
     return this.usersService.signup(createUserDto);
   }
 
+  @Serialize(UserDto)
   @Get(':id')
   async findOneById(@Param('id') id: number): Promise<User> {
-    console.log(typeof id);
-    const user = await this.usersService.findOneById(id);
+    console.log('Handler is running');
 
+    const user = await this.usersService.findOneById(id);
     if (!user) throw new NotFoundException('User Not Found');
 
     return user;
