@@ -36,7 +36,7 @@ export class UsersService {
     return this.usersRepo.save(user);
   }
 
-  async removeOneByID(id: number): Promise<User> {
+  async removeOneById(id: number): Promise<User> {
     const user = await this.findOneById(id);
 
     if (!user) throw new NotFoundException('User Not Found');
