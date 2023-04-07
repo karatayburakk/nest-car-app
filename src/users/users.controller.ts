@@ -10,7 +10,6 @@ import {
   Query,
   Session,
   UseGuards,
-  UseInterceptors,
 } from '@nestjs/common';
 import { SignupDto } from './dtos/signup.dto';
 import { User } from './user.entity';
@@ -21,7 +20,6 @@ import { UserDto } from './dtos/user.dto';
 import { Authservice } from './auth.service';
 import { SigninDto } from './dtos/signin.dto';
 import { CurrentUser } from './decorators/current-user.decorator';
-import { CurrentUserInterceptor } from './interceptors/current-user.interceptor';
 import { AuthGuard } from '../guards/auth.guard';
 
 @Serialize(UserDto)
@@ -90,7 +88,7 @@ export class UsersController {
 
   @Delete(':id')
   removeOneById(@Param('id') id: number): Promise<User> {
-    return this.usersService.removeOneByID(id);
+    return this.usersService.removeOneById(id);
   }
 
   @Patch(':id')
