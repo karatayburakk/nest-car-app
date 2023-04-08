@@ -26,7 +26,7 @@ export class ReportsController {
 
   @Get()
   getEstimate(@Query() query: GetEstimateDto) {
-    console.log(typeof query.year);
+    return this.reportsService.createEstimate(query);
   }
 
   @UseGuards(AuthGuard)
