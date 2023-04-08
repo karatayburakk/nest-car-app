@@ -73,7 +73,7 @@ export class UsersController {
 
   @Get(':id')
   async findOneById(@Param('id') id: number): Promise<User> {
-    console.log('Handler is running');
+    // console.log('Handler is running');
 
     const user = await this.usersService.findOneById(id);
     if (!user) throw new NotFoundException('User Not Found');
